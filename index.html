@@ -1,17 +1,23 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TV show project">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TV show project" />
     <title>TV Show Project | Leigh Ross (leigh-ross)</title>
-    <link href="style.css" rel="stylesheet">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href="style.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
     <main>
       <div id="root"></div>
+      <template id="template-card-episode">
+        <h2 class="episode-name"></h2>
+        <p class="episode-code"></p>
+        <img class="episode-image" alt="Episode image" />
+        <p class="episode-summary"></p>
+      </template>
     </main>
     <footer>
       <p>

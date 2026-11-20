@@ -5,38 +5,41 @@ function setup() {
 }
 
 function makePageForEpisodes(episodeList) {
-  const episodeOne = episodeList[0];
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  const {
-    name,
-    season,
-    number,
-    image: { medium },
-    summary,
-  } = episodeOne;
+  for (const episode of episodeList) {
+    const card = createEpisodeCard(episode);
+    rootElem.appendChild(card);
+  }
+}
+
+function createEpisodeCard(episode) {
+  const { name, season, number, image, summary } = episode;
   const episodeCode =
     `S` +
     String(season).padStart(2, "0") +
     `E` +
     String(number).padStart(2, "0");
-  // Verify each component is displayed properly (strings, links, episodeCode is formatted correctly etc)
-  console.log(name);
-  console.log(season);
-  console.log(number);
-  console.log(medium);
-  console.log(summary);
-  console.log(episodeCode);
+
+  const templateElem = document.getElementById("template-card-episode");
+  const cardClone = templateElem.content.cloneNode(true);
+  cardClone.querySelector(".episode-name").textContent = name;
+  cardClone.querySelector(".episode-code").textContent = episodeCode;
+  if (image) {
+    cardClone.querySelector(".episode-image").src = image.medium;
+    cardClone.querySelector(".episode-image").alt = name;
+  } else {
+     cardClone.querySelector(".episode-image").style.display = "none";
+  }
+  if (summary) {
+    cardClone.querySelector(".episode-summary").textContent = summary
+      .replace("<p>", "")
+      .replace("</p>", "");
+  } else {
+    cardClone.querySelector(".episode-summary").textContent =
+      "No summary available";
+  }
+
+  return cardClone;
 }
-
-/*
-episode name
-season number
-episode number
-(seasonepisodecode)
-med size image for episode
-summary text for episode
-
-*/
 
 window.onload = setup;
